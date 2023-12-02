@@ -4,7 +4,6 @@ import az.baau.msstudent.dto.StudentDto;
 import az.baau.msstudent.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,15 +31,15 @@ public class StudentRestController {
     }
 
     @GetMapping("get/{id}")
-    public ResponseEntity<StudentDto> getStudent(@PathVariable Integer id, StudentDto studentDto) {
-        studentService.getStudentById(id);
+    public ResponseEntity<StudentDto> getStudent(@PathVariable Integer id) {
+        StudentDto studentDto=studentService.getStudentById(id);
         return new ResponseEntity<>(studentDto, HttpStatus.FOUND);
     }
 
     @GetMapping("get/all")
     public ResponseEntity<List<StudentDto>> getAllStudents() {
 
-        return studentService.getAllStudents();
+        return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.FOUND);
     }
 
 
