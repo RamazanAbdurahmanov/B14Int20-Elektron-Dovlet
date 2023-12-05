@@ -32,7 +32,7 @@ public class StudentRestController {
 
     @GetMapping("get/{id}")
     public ResponseEntity<StudentDto> getStudent(@PathVariable Integer id) {
-        StudentDto studentDto=studentService.getStudentById(id);
+        StudentDto studentDto = studentService.getStudentById(id);
         return new ResponseEntity<>(studentDto, HttpStatus.FOUND);
     }
 
@@ -42,5 +42,8 @@ public class StudentRestController {
         return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.FOUND);
     }
 
-
+    @DeleteMapping("delete/{id}")
+    public void deleteStudentById(@PathVariable Integer id) {
+        studentService.deleteStudentById(id);
+    }
 }
